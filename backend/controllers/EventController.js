@@ -1,8 +1,8 @@
-var mongoose = require("mongoose");
-var Event = require("../models/Event");
+const mongoose = require("mongoose");
+const Event = require("../models/Event");
 
 
-exports.addEvent = function(req,res,next){
+function addEvent(req,res,next){
   var event = new Event({
     name: req.body.name,
     price: req.body.price,
@@ -24,7 +24,7 @@ exports.addEvent = function(req,res,next){
   });
 }
 
-exports.getEventbyId = function(req, res, next)
+function getEventbyId(req, res, next)
 {
   search_id = req.params.id;
   console.log(search_id);
@@ -41,7 +41,26 @@ exports.getEventbyId = function(req, res, next)
   });
 }
 
-exports.getEventbyOwner = function(req,res,next)
+
+// This function deletes the event according to given id and returns the deleted event. 
+// If it doesn't exist, it returns 500 response and error message.
+function deleteEvent(req,res,next) {
+  let eventId = req.params.id;
+  
+  Event.findByIdAndRemove(eventId, (err,event) => {
+    if (err) {
+      return res.status(500).send(err);
+    }
+    const response = {
+      message: "Event is succesfully deleted.",
+      event: event
+    }
+
+    return res.status(200).send(response);
+  });
+}
+
+function getEventbyOwner(req,res,next)
 {
   console.log("Searching owner : " + req.params.id);
     Event.find({'owner' : req.params.id}, function(err, docs)
@@ -57,7 +76,7 @@ exports.getEventbyOwner = function(req,res,next)
     });
 }
 
-exports.getAllEvents = function(req,res,next)
+function getAllEvents(req,res,next)
 {
     Event.find({}, function(err, docs)
     {
@@ -70,4 +89,12 @@ exports.getAllEvents = function(req,res,next)
         res.send(docs);
       }
     });
+}
+
+module.exports = {
+  deleteEvent,
+  addEvent,
+  getEventbyId,
+  getEventbyOwner,
+  getAllEvents
 }
