@@ -26,8 +26,6 @@ export class EventCreatePage implements OnInit {
   }
 
   createEvent() {
-    console.log(this.form.value);
-    console.log(localStorage.getItem('token'));
     this.eventService
       .post(this.form.value)
       .subscribe(
