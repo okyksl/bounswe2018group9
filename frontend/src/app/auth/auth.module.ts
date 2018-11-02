@@ -13,6 +13,7 @@ import { SignupPage } from './pages/signup/signup.page'
 
 import { AuthService, tokenGetter } from './providers/auth/auth.service';
 import { environment } from '../../environments/environment';
+import { ForgotpasswordPage } from './pages/forgotpassword/forgotpassword.page';
 
 @NgModule({
   imports: [
@@ -24,7 +25,8 @@ import { environment } from '../../environments/environment';
   ],
   declarations: [
     SigninPage,
-    SignupPage
+    SignupPage,
+    ForgotpasswordPage
   ],
   providers: [
     AuthService,
