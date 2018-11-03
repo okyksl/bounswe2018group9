@@ -62,4 +62,8 @@ export class AuthService {
 
   }
 
+  changePassword(data: {password: string}){
+
+  }
+
 }
