@@ -4,11 +4,11 @@ import { Validators, FormBuilder, FormGroup } from '@angular/forms';
 import { AuthService } from '../../providers/auth/auth.service';
 
 @Component({
-  selector: 'app-forgotpassword',
-  templateUrl: './forgotpassword.page.html',
-  styleUrls: ['./forgotpassword.page.scss'],
+  selector: 'app-forgotPassword',
+  templateUrl: './forgotPassword.page.html',
+  styleUrls: ['./forgotPassword.page.scss'],
 })
-export class ForgotpasswordPage implements OnInit {
+export class ForgotPasswordPage implements OnInit {
 
   form: FormGroup;
 
@@ -23,8 +23,8 @@ export class ForgotpasswordPage implements OnInit {
   ngOnInit() {
   }
 
-  forgotpassword(){
-    console.log(this.form.value);
+  forgotPassword(){
+    this.authService.forgotPassword(this.form.value);
   }
 
 }

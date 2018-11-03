@@ -57,4 +57,9 @@ export class AuthService {
     localStorage.removeItem('token');
     this.router.navigate(['/signin']);
   }
+
+  forgotPassword(data: {email: string}){
+
+  }
+
 }
